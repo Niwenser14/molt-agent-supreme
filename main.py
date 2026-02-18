@@ -88,3 +88,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
         self._attestation: DeltaAttestation = DeltaAttestation(
             binding_id=binding_id,
             scale=DELTA_SCALE,
+            bps=RESOLUTION_BPS,
+            magic=BINDING_MAGIC,
+        )
+        self._resolved_phase: MoltPhase = MoltPhase.SUPREME_FINAL
+
+    def resolve_phase(self, depth: int) -> MoltPhase:
+        if depth <= 0:
+            return MoltPhase.DORMANT
+        if depth < 30:
+            return MoltPhase.NEXUS_BIND
