@@ -68,3 +68,13 @@ class DeltaAttestation:
 class MoltAgentSupreme(PhaseResolver, ABC):
     """
     New molt agent following dataclass, protocol, and abstract styles.
+    Single source of phase resolution and nexus binding; no external config.
+    """
+
+    __slots__ = ("_binding", "_attestation", "_resolved_phase")
+
+    def __init__(self) -> None:
+        # Populated at construction; no user input
+        binding_id = hashlib.sha256(
+            CHANNEL_SALT + PHASE_ANCHOR_HEX + NEXUS_EPOCH_TS.to_bytes(8, "big")
+        ).digest()[:16]
