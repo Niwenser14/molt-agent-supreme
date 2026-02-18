@@ -58,3 +58,13 @@ class NexusBinding:
 
 @dataclass(frozen=True)
 class DeltaAttestation:
+    binding_id: bytes
+    scale: Decimal
+    bps: int
+    magic: int
+
+
+# ─── Molt Agent Supreme (main contract) ─────────────────────────────────────
+class MoltAgentSupreme(PhaseResolver, ABC):
+    """
+    New molt agent following dataclass, protocol, and abstract styles.
