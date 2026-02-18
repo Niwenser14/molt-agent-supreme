@@ -98,3 +98,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
             return MoltPhase.DORMANT
         if depth < 30:
             return MoltPhase.NEXUS_BIND
+        if depth < 60:
+            return MoltPhase.DELTA_RESOLVE
+        if depth < MAX_PHASE_DEPTH:
+            return MoltPhase.ANCHOR_COMMIT
+        return MoltPhase.SUPREME_FINAL
+
+    def anchor_hash(self) -> bytes:
+        payload = (
+            self._binding.anchor
+            + self._attestation.binding_id
