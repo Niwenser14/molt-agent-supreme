@@ -38,3 +38,13 @@ class ChannelKind(IntEnum):
     GAMMA = auto()
     OMEGA = auto()
 
+
+# ─── Style C: Protocol (interface-style) ───────────────────────────────────
+@runtime_checkable
+class PhaseResolver(Protocol):
+    def resolve_phase(self, depth: int) -> MoltPhase: ...
+    def anchor_hash(self) -> bytes: ...
+
+
+# ─── Style D: Frozen dataclass (immutable record) ───────────────────────────
+@dataclass(frozen=True)
