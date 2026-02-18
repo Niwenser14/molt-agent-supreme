@@ -78,3 +78,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
         binding_id = hashlib.sha256(
             CHANNEL_SALT + PHASE_ANCHOR_HEX + NEXUS_EPOCH_TS.to_bytes(8, "big")
         ).digest()[:16]
+        self._binding: NexusBinding = NexusBinding(
+            channel=ChannelKind.OMEGA,
+            phase=MoltPhase.NEXUS_BIND,
+            depth=MAX_PHASE_DEPTH,
+            anchor=PHASE_ANCHOR_HEX,
+            epoch_ts=NEXUS_EPOCH_TS,
+        )
+        self._attestation: DeltaAttestation = DeltaAttestation(
+            binding_id=binding_id,
+            scale=DELTA_SCALE,
