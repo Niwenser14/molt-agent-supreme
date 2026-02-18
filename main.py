@@ -108,3 +108,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
         payload = (
             self._binding.anchor
             + self._attestation.binding_id
+            + self._binding.epoch_ts.to_bytes(8, "big")
+        )
+        return hashlib.sha3_256(payload).digest()
+
+    @property
+    def binding(self) -> NexusBinding:
+        return self._binding
+
+    @property
+    def attestation(self) -> DeltaAttestation:
