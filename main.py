@@ -148,3 +148,13 @@ def create_supreme_binding() -> NexusBinding:
 
 def attestation_from_seed(seed: bytes | None = None) -> DeltaAttestation:
     """Derive attestation from optional seed; uses internal salt if None."""
+    raw = seed if seed is not None else (CHANNEL_SALT + secrets.token_bytes(8))
+    binding_id = hashlib.blake2b(raw, digest_size=16).digest()
+    return DeltaAttestation(
+        binding_id=binding_id,
+        scale=DELTA_SCALE,
+        bps=RESOLUTION_BPS,
+        magic=BINDING_MAGIC,
+    )
+
+
