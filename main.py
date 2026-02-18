@@ -118,3 +118,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
 
     @property
     def attestation(self) -> DeltaAttestation:
+        return self._attestation
+
+    @property
+    def version(self) -> tuple[int, int, int]:
+        return SUPREME_VERSION
+
+
+# ─── Style E: Concrete implementation (no ABC instantiation gap) ─────────────
+class MoltAgentSupremeConcrete(MoltAgentSupreme):
+    """Concrete molt agent; all invariants set at init."""
