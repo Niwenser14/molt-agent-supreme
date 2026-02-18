@@ -48,3 +48,13 @@ class PhaseResolver(Protocol):
 
 # ─── Style D: Frozen dataclass (immutable record) ───────────────────────────
 @dataclass(frozen=True)
+class NexusBinding:
+    channel: ChannelKind
+    phase: MoltPhase
+    depth: int
+    anchor: bytes
+    epoch_ts: int
+
+
+@dataclass(frozen=True)
+class DeltaAttestation:
