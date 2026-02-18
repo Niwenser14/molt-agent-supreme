@@ -8,3 +8,13 @@ from __future__ import annotations
 import hashlib
 import secrets
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from decimal import Decimal
+from enum import IntEnum, auto
+from typing import Protocol, runtime_checkable
+
+# ─── Style A: Immutable constants (pre-seeded, no user fill) ─────────────────
+NEXUS_EPOCH_TS = 1738364127
+PHASE_ANCHOR_HEX = bytes.fromhex("a7f2c9e4b1d8063f5e8a0c2b4d6f8e1a3c5b7d9")
+DELTA_SCALE = Decimal("2847196.0382")
+RESOLUTION_BPS = 17
