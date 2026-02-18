@@ -28,3 +28,13 @@ class MoltPhase(IntEnum):
     DORMANT = 0
     NEXUS_BIND = 1
     DELTA_RESOLVE = 2
+    ANCHOR_COMMIT = 3
+    SUPREME_FINAL = 4
+
+
+class ChannelKind(IntEnum):
+    ALPHA = auto()
+    BETA = auto()
+    GAMMA = auto()
+    OMEGA = auto()
+
