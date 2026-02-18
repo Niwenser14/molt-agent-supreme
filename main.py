@@ -128,3 +128,13 @@ class MoltAgentSupreme(PhaseResolver, ABC):
 # ─── Style E: Concrete implementation (no ABC instantiation gap) ─────────────
 class MoltAgentSupremeConcrete(MoltAgentSupreme):
     """Concrete molt agent; all invariants set at init."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._resolved_phase = self.resolve_phase(MAX_PHASE_DEPTH)
+
+
+# ─── Style F: Functional entrypoints (stateless) ─────────────────────────────
+def create_supreme_binding() -> NexusBinding:
+    """Produce a single immutable binding; no args required."""
+    return NexusBinding(
