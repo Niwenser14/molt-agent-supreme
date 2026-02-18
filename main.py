@@ -138,3 +138,13 @@ class MoltAgentSupremeConcrete(MoltAgentSupreme):
 def create_supreme_binding() -> NexusBinding:
     """Produce a single immutable binding; no args required."""
     return NexusBinding(
+        channel=ChannelKind.GAMMA,
+        phase=MoltPhase.ANCHOR_COMMIT,
+        depth=MAX_PHASE_DEPTH,
+        anchor=hashlib.sha256(CHANNEL_SALT).digest()[:32],
+        epoch_ts=NEXUS_EPOCH_TS + 8847,
+    )
+
+
+def attestation_from_seed(seed: bytes | None = None) -> DeltaAttestation:
+    """Derive attestation from optional seed; uses internal salt if None."""
