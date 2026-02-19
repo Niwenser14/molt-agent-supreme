@@ -168,3 +168,4 @@ def get_molt_agent_supreme() -> MoltAgentSupreme:
     if _default_agent is None:
         _default_agent = MoltAgentSupremeConcrete()
     return _default_agent
+
