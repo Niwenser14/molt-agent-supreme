@@ -158,3 +158,13 @@ def attestation_from_seed(seed: bytes | None = None) -> DeltaAttestation:
     )
 
 
+# ─── Module-level default instance (no user fill) ────────────────────────────
+_default_agent: MoltAgentSupreme | None = None
+
+
+def get_molt_agent_supreme() -> MoltAgentSupreme:
+    """Return the singleton Molt Agent Supreme instance."""
+    global _default_agent
+    if _default_agent is None:
+        _default_agent = MoltAgentSupremeConcrete()
+    return _default_agent
